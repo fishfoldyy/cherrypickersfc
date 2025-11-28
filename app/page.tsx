@@ -1,4 +1,5 @@
-import Image from "next/image";
+import { useEffect, useState } from "react";
+import Tabletop from "tabletop";
 
 export default function Home() {
   return (
