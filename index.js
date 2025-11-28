@@ -15,6 +15,8 @@ function updateMatchCard(teamA, teamB, scoreA, scoreB, location, date, shootout,
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("ig-wid").style.width = "100%";
+    document.getElementById("ig-wid").style.height = (document.getElementById("ig-wid").style.width*5/3) + "px";
     fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vS-WGhIDz5Y_o_cSq0biFiqJYBS5ED_7_y-IT_Ncm7snfKB0PtN4BbNDLZUiDfiQXPO-nvE5A4_snaw/pub?output=csv")
         .then(response => response.text())
         .then(csv => {
