@@ -1,9 +1,6 @@
-const SHEET_ID = "<YOUR_SHEET_ID>";
-const SHEET_NAME = "Sheet1"; // default sheet name
-
 export default async function fetchScores() {
   try {
-    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
+    const url = `https://docs.google.com/spreadsheets/d/e/2PACX-1vS-WGhIDz5Y_o_cSq0biFiqJYBS5ED_7_y-IT_Ncm7snfKB0PtN4BbNDLZUiDfiQXPO-nvE5A4_snaw/pubhtml`;
     const res = await fetch(url);
     const text = await res.text();
 
