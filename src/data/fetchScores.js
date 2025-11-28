@@ -1,20 +1,21 @@
 export default async function fetchScores() {
   try {
-    const url = `https://docs.google.com/spreadsheets/d/e/2PACX-1vS-WGhIDz5Y_o_cSq0biFiqJYBS5ED_7_y-IT_Ncm7snfKB0PtN4BbNDLZUiDfiQXPO-nvE5A4_snaw/pubhtml`;
+    const url = `https://docs.google.com/spreadsheets/d/e/2PACX-1vS-WGhIDz5Y_o_cSq0biFiqJYBS5ED_7_y-IT_Ncm7snfKB0PtN4BbNDLZUiDfiQXPO-nvE5A4_snaw/pub?output=csv`;
     const res = await fetch(url);
     const text = await res.text();
 
-    // Google Sheets JSON is wrapped in extra text, remove it
-    const json = JSON.parse(text.substr(47).slice(0, -2));
-    const rows = json.table.rows;
+    const rows = text.split("\n").map(r => r.split(","));
+    const headers = rows[0];
 
-    return rows.map(row => ({
-      teamA: row.c[0]?.v || "",
-      teamB: row.c[1]?.v || "",
-      scoreA: row.c[2]?.v || 0,
-      scoreB: row.c[3]?.v || 0,
-      date: row.c[4]?.v || "",
-    }));
+    const data = rows.slice(1).map(row => {
+      let obj = {};
+      row.forEach((value, i) => {
+        obj[headers[i]] = value.trim();
+      });
+      return obj;
+    });
+
+    return data;
   } catch (error) {
     console.error("Error fetching scores:", error);
     return [];
