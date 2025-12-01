@@ -1,0 +1,179 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+p {
+    line-height: 1.4;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    align-items: center;
+    text-align: center;
+}
+
+main {
+    padding: 0 5rem;
+    min-height: 80vh;
+}
+
+h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+section {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+a {
+    color: #ff0000;
+    transition-duration: 0.3s;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #000;
+    transition-duration: 0.3s;
+}
+
+#footerRef {
+    color: #fff;
+    transition-duration: 0.3s;
+    text-decoration: none;
+}
+
+#footerRef:hover {
+    color: #aaa;
+    transition-duration: 0.3s;
+}
+
+hr {
+    border: none;
+    border-top: 1.5px solid #ccc;
+    margin: 2rem 0;
+}
+
+header {
+    text-align: center;
+    padding: 3rem 0;
+    margin-bottom: 3rem;
+    background-color: #000;
+    color: #fff;
+    border-radius: 0 0 1.2rem 1.2rem;
+}
+
+#header-cpfc-logo {
+    width: 5rem;
+    height: 5rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin: 1rem 0 0 0;
+}
+
+.seemore {
+    margin-bottom: 1rem;
+}
+
+.card {
+    display: inline-block;
+    margin: 1rem 0;
+    padding: 2.5rem 4rem;
+    border: 1px solid #000;
+    border-radius: 10px;
+    max-width: 50vw;
+    font-size: 1.2rem;
+    background-color: #fff;
+    transition-duration: 0.3s;
+    box-shadow: none;
+}
+
+.card br {
+    margin-bottom: 0.5rem;
+}
+
+.card:hover {
+    background-color: #f2f2f2;
+    transition-duration: 0.3s;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.card strong {
+    margin: 0 0.6rem;
+    font-weight: 600;
+}
+
+.card small {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+img, div {
+  max-width: 90vw;
+  box-sizing: border-box;
+}
+
+#squadlist {
+    text-align: center;
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+#squadlist li .card {
+    width: 25rem;
+    height: 30rem;
+    margin: 1rem 0.5rem;
+}
+
+#squadlist li .card strong {
+    margin: auto;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    background-color: #000;
+    color: #fff;
+    border-radius: 1.2rem 1.2rem 0 0;
+    font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 1rem;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    main {
+        padding: 0 1.5rem;
+    }
+
+    .card {
+        padding: auto;
+        font-size: 1rem;
+        max-width: 90vw;
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
+}

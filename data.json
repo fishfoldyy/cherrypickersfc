@@ -1,0 +1,4 @@
+{
+  "alice": { "age": 30, "gender": "female" },
+  "bob":   { "age": 40, "gender": "male" }
+}
