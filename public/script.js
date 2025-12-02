@@ -1,17 +1,31 @@
 function updateMatchCard(teamA, teamB, scoreA, scoreB, location, date, shootout, shootoutA, shootoutB) {
-    const matchCard = document.getElementById('matchcard');
+    let cardContents = "";
+
     if (shootout == false) {
-        matchCard.innerHTML = `
+        cardContents = `
         <strong>${teamA}</strong>${scoreA} - ${scoreB}<strong>${teamB}</strong><br>
         <small>${location} | ${date}</small>
         `;
     } else {
-        matchCard.innerHTML = `
+        cardContents = `
         <strong>${teamA}</strong> ${scoreA} - ${scoreB} <strong>${teamB}</strong><br>
         <small>(penalties ${shootoutA} - ${shootoutB})</small><br>
         <small>${location} | ${date}</small>
         `;
     }
+    const card = document.createElement("div");
+    if (scoreA > scoreB) {
+        card.innerHTML = `<div class="card win">${cardContents}</div>`;
+    } else if (scoreB > scoreA) {
+        card.innerHTML = `<div class="card lose">${cardContents}</div>`;
+    } else if (shootoutA > shootoutB) {
+        card.innerHTML = `<div class="card win">${cardContents}</div>`;
+    } else if (shootoutB > shootoutA) {
+        card.innerHTML = `<div class="card lose">${cardContents}</div>`;
+    } else {
+        card.innerHTML = `<div class="card">${cardContents}</div>`;
+    }
+    document.getElementById("place-for-matchcard").appendChild(card);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
