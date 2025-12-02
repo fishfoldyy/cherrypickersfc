@@ -1,20 +1,22 @@
 const express = require("express");
 const app = express();
-const data = require("./data.json");
+// const data = require("./data.json");
 
 app.use(express.static("public"));
 
-app.get("/:name", (req, res) => {
-  const person = data[req.params.name];
-  if (!person) return res.status(404).send("Not found");
+/* app.get("/squad/:name", (req, res) => {
+    const player = data[req.params.name];
+    if (!player) return res.status(404).send("Error: 404 Not found");
 
-  res.send(`
+    res.send(`
     <h1>${req.params.name}</h1>
-    <p>Age: ${person.age}</p>
-    <p>Gender: ${person.gender}</p>
-  `);
-});
+    <p>Appearances: ${player.apps}</p>
+    <p>Goals: ${player.goals}</p>
+    <p>Assists: ${player.assists}</p>`
+    );
+
+}); */
 
 // Required for Render: use PORT from environment
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Running on {port}`));
+app.listen(port, () => console.log(`Running on ${port}`));

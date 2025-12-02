@@ -1,3 +1,47 @@
-<!DOCTYPE html>
-<h1>hello world! this is a placeholder for the actual page.</h1>
-<a href="/">home</a>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Cherry Pickers FC</title>
+		<meta name="description" content="Official site of Cherry Pickers FC" />
+		<link rel="apple-touch-icon" sizes="180x180" href="../_img/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="../_img/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="../_img/favicon-16x16.png">
+		<link rel="manifest" href="../_img/site.webmanifest">
+		<link rel="shortcut icon" href="../_img/favicon.ico">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="../global/styles.css" />
+		<script src="script.js" defer></script>
+	</head>
+
+	<body>
+		<header>
+			<ul id="top-nav">
+				<li><a href="/">Home</a></li>
+				<li><a href="/fixtures">Fixtures</a></li>
+				<li><a href="/squad">Squad</a></li>
+			</ul>
+			<img id="header-cpfc-logo" src="../_img/cpfc-logo-no-bg.png" alt="Cherry Pickers FC Logo" />
+			<h1>Cherry Pickers FC</h1>
+		</header>
+		<main>
+			<section id="squad" aria-labelledby="squad-heading">
+				<h3 id="squad-heading">Our Squad</h3>
+				<ul id="squadlist">
+					<li>
+						<div class="card">
+							<!--player details go here. follow format with other playercard cuz the margins can screw the formatting-->
+							<img src="../_img/cpfc-logo-no-bg.png" width="100px" height="100px"><br>
+							<strong>Placeholder</strong><br>
+							<small>Statline</small>
+						</div>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<footer>
+			<p>made by <a id="footerRef" href="https://github.com/fishfoldyy" target="_blank"><b>fishfoldyy</b></a></p>
+		</footer>
+	</body>
+</html>

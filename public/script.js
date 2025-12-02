@@ -8,13 +8,31 @@ function updateMatchCard(teamA, teamB, scoreA, scoreB, location, date, shootout,
     } else {
         matchCard.innerHTML = `
         <strong>${teamA}</strong> ${scoreA} - ${scoreB} <strong>${teamB}</strong><br>
-        <small>(P ${shootoutA} - ${shootoutB})</small><br>
+        <small>(penalties ${shootoutA} - ${shootoutB})</small><br>
         <small>${location} | ${date}</small>
         `;
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const el = document.getElementById('back-to-top');
+    el.classList.add('hide');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) {
+            el.classList.remove('hide');
+            el.classList.add('show');
+        } else {
+            el.classList.remove('show');
+            el.classList.add('hide');
+        }
+    });
+
+    el.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
     fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vS-WGhIDz5Y_o_cSq0biFiqJYBS5ED_7_y-IT_Ncm7snfKB0PtN4BbNDLZUiDfiQXPO-nvE5A4_snaw/pub?output=csv")
         .then(response => response.text())
         .then(csv => {

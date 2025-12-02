@@ -1,4 +1,4 @@
 {
-  "alice": { "age": 30, "gender": "female" },
-  "bob":   { "age": 40, "gender": "male" }
+  "alice": { "apps": 30, "goals": 10, "assists": 10 },
+  "bob": { "apps": 30, "goals": 20, "assists": 10 }
 }
