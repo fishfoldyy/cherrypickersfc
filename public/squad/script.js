@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } else if (pos === "Midfielder" || pos === "Forward") { // MID & FWD best stat
                 if (goals > 0 && assts > 0) {
-                    shownStats = `${goals} goals and ${assts} assists`;
+                    shownStats = `${goals} goals and ${assts} assist(s)`;
                 } else if (goals > 0) {
                     shownStats = `${goals} goal(s)`;
                 } else if (assts > 0) {
