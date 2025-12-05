@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vS-WGhIDz5Y_o_cSq0biFiqJYBS5ED_7_y-IT_Ncm7snfKB0PtN4BbNDLZUiDfiQXPO-nvE5A4_snaw/pub?output=csv")
+    fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vS-WGhIDz5Y_o_cSq0biFiqJYBS5ED_7_y-IT_Ncm7snfKB0PtN4BbNDLZUiDfiQXPO-nvE5A4_snaw/pub?gid=0&single=true&output=csv")
     .then(response => response.text())
     .then(csv => {
         const rows = csv.split("\n").map(row => row.split(","));
@@ -25,14 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const completeMatches = [];
         const incompleteMatches = [];
+        const allMatches = [];
 
         // collect all complete matches from newest → oldest
         for (let i = rows.length - 1; i >= 1; i--) {
             const row = rows[i];
             if (row.length >= 4 && row[2] !== "" && row[3] !== "") {
                 completeMatches.push(row);
+                allMatches.push(row);
             } else if (row.length >= 2 && row[0] !== "" && row[1] !== "") {
                 incompleteMatches.push(row);
+                allMatches.push(row);
             }
         }
 
@@ -45,80 +48,89 @@ document.addEventListener('DOMContentLoaded', () => {
             fList.innerHTML = `
                 <li><div class="card"><strong>No future matches found.</strong></div></li>
             `;
-            return;
         }
 
         if (completeMatches.length === 0) {
             mList.innerHTML = `
                 <li><div class="card"><strong>No future matches found.</strong></div></li>
             `;
-            return;
         }
 
         // build each card
-        incompleteMatches.forEach(row => {
+        incompleteMatches.forEach((row, index) => {
             const teamA = row[0];
             const teamB = row[1];
 
-            const [year, month, day] = row[4].split("-");
+            const [day, month, year] = row[4].split("-");
             const date = `${day}/${month}/${year}`;
-
             const location = row[5];
 
-            let cardContents = "";
-            
-            cardContents = `
+            const id = rows.indexOf(row); // or just index
+
+            const cardContents = `
                 <strong>${teamA}</strong> vs <strong>${teamB}</strong><br>
                 <small>${location} | ${date}</small>
             `;
 
             const li = document.createElement("li");
-            li.innerHTML = `<div class="card">${cardContents}</div>`;
+            /*
+            li.innerHTML = `
+                <a class="cardAnchors" href="/fixtures/${id}">
+                    <div class="card">${cardContents}</div>
+                </a>
+            `;
+            */
+            li.innerHTML = `
+                <div class="card">${cardContents}</div>
+            `;
             fList.appendChild(li);
         });
 
-        completeMatches.forEach(row => {
+        completeMatches.forEach((row, index) => {
             const teamA = row[0];
             const teamB = row[1];
             const scoreA = parseInt(row[2]);
             const scoreB = parseInt(row[3]);
 
-            const [year, month, day] = row[4].split("-");
+            const [day, month, year] = row[4].split("-");
             const date = `${day}/${month}/${year}`;
-
             const location = row[5];
 
-            const shootout = row[6] && row[7];
             const shootoutA = row[6] ? parseInt(row[6]) : null;
             const shootoutB = row[7] ? parseInt(row[7]) : null;
+            const shootout = shootoutA !== null && shootoutB !== null;
 
-            let cardContents = "";
+            const id = rows.indexOf(row); // or index
 
-            if (!shootout) {
-                cardContents = `
-                    <strong>${teamA}</strong> ${scoreA} - ${scoreB} <strong>${teamB}</strong><br>
-                    <small>${location} | ${date}</small>
-                `;
-            } else {
-                cardContents = `
+            let cardContents = shootout
+                ? `
                     <strong>${teamA}</strong> ${scoreA} - ${scoreB} <strong>${teamB}</strong><br>
                     <small>(penalties ${shootoutA} - ${shootoutB})</small><br>
                     <small>${location} | ${date}</small>
+                `
+                : `
+                    <strong>${teamA}</strong> ${scoreA} - ${scoreB} <strong>${teamB}</strong><br>
+                    <small>${location} | ${date}</small>
                 `;
-            }
+
+            const resultClass =
+                scoreA > scoreB || (shootoutA > shootoutB)
+                    ? "win"
+                    : scoreB > scoreA || (shootoutB > shootoutA)
+                    ? "lose"
+                    : "";
 
             const li = document.createElement("li");
-            if (scoreA > scoreB) {
-                li.innerHTML = `<div class="card win">${cardContents}</div>`;
-            } else if (scoreB > scoreA) {
-                li.innerHTML = `<div class="card lose">${cardContents}</div>`;
-            } else if (shootoutA > shootoutB) {
-                li.innerHTML = `<div class="card win">${cardContents}</div>`;
-            } else if (shootoutB > shootoutA) {
-                li.innerHTML = `<div class="card lose">${cardContents}</div>`;
-            } else {
-                li.innerHTML = `<div class="card">${cardContents}</div>`;
-            }
+            /*
+            li.innerHTML = `
+                <a class="cardAnchors" href="/fixtures/${id}">
+                    <div class="card ${resultClass}">${cardContents}</div>
+                </a>
+            `;
+            */
+            li.innerHTML = `
+                <div class="card ${resultClass}">${cardContents}</div>
+            `;
             mList.appendChild(li);
         });
     });

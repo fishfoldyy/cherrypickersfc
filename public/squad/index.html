@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Cherry Pickers FC</title>
 		<meta name="description" content="Official site of Cherry Pickers FC" />
+		<meta name="theme-color" content="#000000">
 		<link rel="apple-touch-icon" sizes="180x180" href="../_img/apple-touch-icon.png">
 		<link rel="icon" type="image/png" sizes="32x32" href="../_img/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="../_img/favicon-16x16.png">
@@ -28,17 +29,24 @@
 		<main>
 			<section id="squad" aria-labelledby="squad-heading">
 				<h3 id="squad-heading">Our Squad</h3>
-				<ul id="squadlist">
-					<li>
-						<div class="card">
-							<!--player details go here. follow format with other playercard cuz the margins can screw the formatting-->
-							<img src="../_img/cpfc-logo-no-bg.png" width="100px" height="100px"><br>
-							<strong>Placeholder</strong><br>
-							<small>Statline</small>
-						</div>
-					</li>
+				<h4>Goalkeepers</h4>
+				<ul class="sqList" id="gk-list">
+                    <!--script inserts here-->
+				</ul>
+				<h4>Defenders</h4>
+				<ul class="sqList" id="def-list">
+					<!--script inserts here-->
+				</ul>
+				<h4>Midfielders</h4>
+				<ul class="sqList" id="mid-list">
+					<!--script inserts here-->
+				</ul>
+				<h4>Forwards</h4>
+				<ul class="sqList" id="fwd-list">
+					<!--script inserts here-->
 				</ul>
 			</section>
+			<button id="back-to-top">&UpArrow;</button>
 		</main>
 		<footer>
 			<p>made by <a id="footerRef" href="https://github.com/fishfoldyy" target="_blank"><b>fishfoldyy</b></a></p>
