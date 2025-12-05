@@ -221,7 +221,7 @@ footer {
 .sqList {
     display: flex;
     flex-wrap: nowrap;
-    overflow-x: scroll;
+    overflow-x: auto;
     justify-content: left;
     width: 100%;
 }
